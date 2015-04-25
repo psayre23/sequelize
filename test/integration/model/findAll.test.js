@@ -632,7 +632,7 @@ describe(Support.getTestDialectTeaser('Model'), function() {
 
         it('throws an error if alias is not associated', function() {
           var self = this;
-          return self.Worker.findAll({ include: [{ daoFactory: self.Task, as: 'Work' }] }).catch (function(err) {
+          return self.Worker.findAll({ include: [{ model: self.Task, as: 'Work' }] }).catch (function(err) {
             expect(err.message).to.equal('Task (Work) is not associated to Worker!');
           });
         });
@@ -640,7 +640,7 @@ describe(Support.getTestDialectTeaser('Model'), function() {
         it('returns the associated task via worker.task', function() {
           return this.Worker.findAll({
             where: { name: 'worker' },
-            include: [{ daoFactory: this.Task, as: 'ToDo' }]
+            include: [{ model: this.Task, as: 'ToDo' }]
           }).then(function(workers) {
             expect(workers).to.exist;
             expect(workers[0].ToDo).to.exist;
@@ -724,7 +724,7 @@ describe(Support.getTestDialectTeaser('Model'), function() {
 
         it('throws an error if alias is not associated', function() {
           var self = this;
-          return self.Worker.findAll({ include: [{ daoFactory: self.Task, as: 'Work' }] }).catch (function(err) {
+          return self.Worker.findAll({ include: [{ model: self.Task, as: 'Work' }] }).catch (function(err) {
             expect(err.message).to.equal('Task (Work) is not associated to Worker!');
           });
         });
@@ -732,7 +732,7 @@ describe(Support.getTestDialectTeaser('Model'), function() {
         it('returns the associated task via worker.task', function() {
           return this.Worker.findAll({
             where: { name: 'worker' },
-            include: [{ daoFactory: this.Task, as: 'ToDos' }]
+            include: [{ model: this.Task, as: 'ToDos' }]
           }).then(function(workers) {
             expect(workers).to.exist;
             expect(workers[0].ToDos).to.exist;
@@ -743,7 +743,7 @@ describe(Support.getTestDialectTeaser('Model'), function() {
         it('returns the associated task via worker.task when daoFactory is aliased with model', function() {
           return this.Worker.findAll({
             where: { name: 'worker' },
-            include: [{ daoFactory: this.Task, as: 'ToDos' }]
+            include: [{ model: this.Task, as: 'ToDos' }]
           }).then(function(workers) {
             expect(workers[0].ToDos[0].title).to.equal('homework');
           });
